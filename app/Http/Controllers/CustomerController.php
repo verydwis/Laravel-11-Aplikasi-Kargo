@@ -35,4 +35,26 @@ class CustomerController extends Controller
         ]);
         return redirect('/customers')->with('success', 'Data Customer berhasil ditambahkan:)');
     }
+    function edit($id)
+    {
+        $customer = Customer::find($id);
+        return view('customers.edit', compact(['customer']));
+    }
+    function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|min:5',
+            'email' => 'required|email',
+            'phone' => 'required|numeric',
+            'address' => 'required',
+        ]);
+        $customer = Customer::find($id);
+        $customer->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address
+        ]);
+        return redirect('/customers')->with('success', 'Data Customer berhasil diubah :)');
+    }
 }
