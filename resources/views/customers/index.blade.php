@@ -38,7 +38,12 @@
                                         <td>{{ $customer->address }}</td>
                                         <td>
                                             <a href="/customers/{{ $customer->id }}/edit" class="btn btn-warning">Edit</a>
-                                            <a href="#" class="btn btn-danger">Delete</a>
+                                            <form action="/customers/{{ $customer->id }}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <input type="submit" value="Delete" class="btn btn-danger" name=""
+                                                    id="">
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -57,4 +57,11 @@ class CustomerController extends Controller
         ]);
         return redirect('/customers')->with('success', 'Data Customer berhasil diubah :)');
     }
+
+    function destroy($id)
+    {
+        $customer = Customer::find($id);
+        $customer->delete();
+        return redirect('/customers')->with('success', 'Data Customer berhasil dihapus :)');
+    }
 }
